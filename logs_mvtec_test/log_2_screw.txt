@@ -1,0 +1,13 @@
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'screw', 'prefix': '2022-10-14-1616', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+-------start test on screw with 2 shot----------------
+cur Image-level AUC/AUPR: 0.5681 0.7604, cur Pixel-level AUC/AUPR/IOU: 0.9441 0.0245 0.0243
+cur Image-level AUC/AUPR: 0.6137 0.7937, cur Pixel-level AUC/AUPR/IOU: 0.9510 0.0287 0.0308
+cur Image-level AUC/AUPR: 0.5130 0.7557, cur Pixel-level AUC/AUPR/IOU: 0.9467 0.0266 0.0277
+cur Image-level AUC/AUPR: 0.6126 0.8132, cur Pixel-level AUC/AUPR/IOU: 0.9380 0.0218 0.0263
+cur Image-level AUC/AUPR: 0.5282 0.7587, cur Pixel-level AUC/AUPR/IOU: 0.9418 0.0266 0.0254
+cur Image-level AUC/AUPR: 0.5997 0.8288, cur Pixel-level AUC/AUPR/IOU: 0.9431 0.0243 0.0277
+cur Image-level AUC/AUPR: 0.4909 0.7558, cur Pixel-level AUC/AUPR/IOU: 0.9346 0.0250 0.0229
+cur Image-level AUC/AUPR: 0.4864 0.7285, cur Pixel-level AUC/AUPR/IOU: 0.9242 0.0208 0.0201
+cur Image-level AUC/AUPR: 0.4610 0.7049, cur Pixel-level AUC/AUPR/IOU: 0.9441 0.0231 0.0251
+cur Image-level AUC/AUPR: 0.5124 0.7389, cur Pixel-level AUC/AUPR/IOU: 0.9437 0.0236 0.0270
+Image-level AUC/AUPR: 0.5386 0.7639, Pixel-level AUC/AUPR: 0.9411 0.0245 0.0257

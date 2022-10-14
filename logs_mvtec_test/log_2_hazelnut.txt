@@ -1,0 +1,13 @@
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'hazelnut', 'prefix': '2022-10-14-1634', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+-------start test on hazelnut with 2 shot----------------
+cur Image-level AUC/AUPR: 0.9557 0.9748, cur Pixel-level AUC/AUPR/IOU: 0.9830 0.5427 0.3875
+cur Image-level AUC/AUPR: 0.9789 0.9884, cur Pixel-level AUC/AUPR/IOU: 0.9841 0.5738 0.4189
+cur Image-level AUC/AUPR: 0.9689 0.9847, cur Pixel-level AUC/AUPR/IOU: 0.9813 0.5438 0.3936
+cur Image-level AUC/AUPR: 0.9507 0.9723, cur Pixel-level AUC/AUPR/IOU: 0.9826 0.5471 0.3861
+cur Image-level AUC/AUPR: 0.9404 0.9665, cur Pixel-level AUC/AUPR/IOU: 0.9828 0.5412 0.3847
+cur Image-level AUC/AUPR: 0.9586 0.9773, cur Pixel-level AUC/AUPR/IOU: 0.9810 0.5304 0.3795
+cur Image-level AUC/AUPR: 0.9700 0.9863, cur Pixel-level AUC/AUPR/IOU: 0.9812 0.5455 0.3967
+cur Image-level AUC/AUPR: 0.9568 0.9746, cur Pixel-level AUC/AUPR/IOU: 0.9830 0.5480 0.3851
+cur Image-level AUC/AUPR: 0.9629 0.9788, cur Pixel-level AUC/AUPR/IOU: 0.9810 0.5350 0.3882
+cur Image-level AUC/AUPR: 0.9836 0.9910, cur Pixel-level AUC/AUPR/IOU: 0.9814 0.5506 0.3957
+Image-level AUC/AUPR: 0.9626 0.9795, Pixel-level AUC/AUPR: 0.9821 0.5458 0.3916

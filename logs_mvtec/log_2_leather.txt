@@ -1,0 +1,152 @@
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 2, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.0001, 'momentum': 0.9, 'obj': 'leather', 'prefix': '2022-10-12-50', 'save_dir': './logs_mvtec/', 'save_model_dir': './logs_mvtec/rotation_scale/2/leather/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+---------rotation_scale--------
+   1/ 50 ----- [[2022-10-12 20:18:27]] [Need: 00:00:00]
+Test Epoch(img, pixel): 0 (0.944769, 0.990764) best: (0.945, 0.991)
+Train Epoch: 1 Total_Loss: 0.006148
+   2/ 50 ----- [[2022-10-12 20:29:45]] [Need: 08:10:51]
+Test Epoch(img, pixel): 1 (0.995448, 0.990983) best: (0.995, 0.991)
+Train Epoch: 2 Total_Loss: -0.026539
+   3/ 50 ----- [[2022-10-12 20:40:43]] [Need: 08:19:06]
+Test Epoch(img, pixel): 2 (0.990489, 0.989921) best: (0.995, 0.991)
+Train Epoch: 3 Total_Loss: -0.059114
+   4/ 50 ----- [[2022-10-12 20:52:04]] [Need: 08:18:51]
+Test Epoch(img, pixel): 3 (1.000000, 0.988810) best: (1.000, 0.989)
+Train Epoch: 4 Total_Loss: -0.090170
+   5/ 50 ----- [[2022-10-12 21:02:57]] [Need: 08:08:19]
+Test Epoch(img, pixel): 4 (0.991916, 0.988542) best: (1.000, 0.989)
+Train Epoch: 5 Total_Loss: -0.119529
+   6/ 50 ----- [[2022-10-12 21:14:14]] [Need: 08:00:19]
+Test Epoch(img, pixel): 5 (0.999762, 0.990133) best: (1.000, 0.990)
+Train Epoch: 6 Total_Loss: -0.147907
+   7/ 50 ----- [[2022-10-12 21:25:16]] [Need: 07:51:25]
+Test Epoch(img, pixel): 6 (0.987024, 0.988961) best: (1.000, 0.990)
+Train Epoch: 7 Total_Loss: -0.174964
+   8/ 50 ----- [[2022-10-12 21:36:16]] [Need: 07:40:44]
+Test Epoch(img, pixel): 7 (0.997860, 0.987704) best: (1.000, 0.990)
+Train Epoch: 8 Total_Loss: -0.199704
+   9/ 50 ----- [[2022-10-12 21:47:25]] [Need: 07:30:16]
+Test Epoch(img, pixel): 8 (0.991712, 0.984749) best: (1.000, 0.990)
+Train Epoch: 9 Total_Loss: -0.222604
+  10/ 50 ----- [[2022-10-12 21:58:43]] [Need: 07:20:22]
+Test Epoch(img, pixel): 9 (0.984783, 0.987368) best: (1.000, 0.990)
+Train Epoch: 10 Total_Loss: -0.243837
+  11/ 50 ----- [[2022-10-12 22:09:54]] [Need: 07:10:19]
+Test Epoch(img, pixel): 10 (0.994158, 0.985095) best: (1.000, 0.990)
+Train Epoch: 11 Total_Loss: -0.263013
+  12/ 50 ----- [[2022-10-12 22:21:10]] [Need: 07:00:20]
+Test Epoch(img, pixel): 11 (0.992595, 0.986837) best: (1.000, 0.990)
+Train Epoch: 12 Total_Loss: -0.280375
+  13/ 50 ----- [[2022-10-12 22:32:19]] [Need: 06:49:34]
+Test Epoch(img, pixel): 12 (0.999932, 0.987056) best: (1.000, 0.990)
+Train Epoch: 13 Total_Loss: -0.296305
+  14/ 50 ----- [[2022-10-12 22:43:37]] [Need: 06:39:11]
+Test Epoch(img, pixel): 13 (0.992663, 0.987841) best: (1.000, 0.990)
+Train Epoch: 14 Total_Loss: -0.310536
+  15/ 50 ----- [[2022-10-12 22:54:52]] [Need: 06:28:31]
+Test Epoch(img, pixel): 14 (0.999287, 0.987060) best: (1.000, 0.990)
+Train Epoch: 15 Total_Loss: -0.323586
+  16/ 50 ----- [[2022-10-12 23:06:09]] [Need: 06:17:49]
+Test Epoch(img, pixel): 15 (0.991474, 0.988232) best: (1.000, 0.990)
+Train Epoch: 16 Total_Loss: -0.335398
+  17/ 50 ----- [[2022-10-12 23:17:25]] [Need: 06:06:53]
+Test Epoch(img, pixel): 16 (0.998913, 0.984019) best: (1.000, 0.990)
+Train Epoch: 17 Total_Loss: -0.346280
+  18/ 50 ----- [[2022-10-12 23:28:27]] [Need: 05:55:39]
+Test Epoch(img, pixel): 17 (0.991168, 0.988456) best: (1.000, 0.990)
+Train Epoch: 18 Total_Loss: -0.356083
+  19/ 50 ----- [[2022-10-12 23:39:44]] [Need: 05:44:55]
+Test Epoch(img, pixel): 18 (0.990693, 0.982951) best: (1.000, 0.990)
+Train Epoch: 19 Total_Loss: -0.364757
+  20/ 50 ----- [[2022-10-12 23:51:08]] [Need: 05:34:02]
+Test Epoch(img, pixel): 19 (0.993478, 0.983155) best: (1.000, 0.990)
+Train Epoch: 20 Total_Loss: -0.372948
+  21/ 50 ----- [[2022-10-13 00:02:20]] [Need: 05:23:00]
+Test Epoch(img, pixel): 20 (0.994599, 0.986032) best: (1.000, 0.990)
+Train Epoch: 21 Total_Loss: -0.380166
+  22/ 50 ----- [[2022-10-13 00:13:32]] [Need: 05:11:56]
+Test Epoch(img, pixel): 21 (0.993308, 0.985529) best: (1.000, 0.990)
+Train Epoch: 22 Total_Loss: -0.386520
+  23/ 50 ----- [[2022-10-13 00:25:11]] [Need: 05:01:10]
+Test Epoch(img, pixel): 22 (0.989742, 0.985665) best: (1.000, 0.990)
+Train Epoch: 23 Total_Loss: -0.392603
+  24/ 50 ----- [[2022-10-13 00:36:23]] [Need: 04:50:21]
+Test Epoch(img, pixel): 23 (0.989708, 0.987540) best: (1.000, 0.990)
+Train Epoch: 24 Total_Loss: -0.397856
+  25/ 50 ----- [[2022-10-13 00:47:36]] [Need: 04:39:14]
+Test Epoch(img, pixel): 24 (0.995652, 0.986239) best: (1.000, 0.990)
+Train Epoch: 25 Total_Loss: -0.402546
+  26/ 50 ----- [[2022-10-13 00:58:46]] [Need: 04:28:03]
+Test Epoch(img, pixel): 25 (0.990795, 0.986066) best: (1.000, 0.990)
+Train Epoch: 26 Total_Loss: -0.407175
+  27/ 50 ----- [[2022-10-13 01:09:57]] [Need: 04:16:53]
+Test Epoch(img, pixel): 26 (0.993988, 0.986412) best: (1.000, 0.990)
+Train Epoch: 27 Total_Loss: -0.411169
+  28/ 50 ----- [[2022-10-13 01:21:16]] [Need: 04:05:56]
+Test Epoch(img, pixel): 27 (0.996196, 0.986581) best: (1.000, 0.990)
+Train Epoch: 28 Total_Loss: -0.414787
+  29/ 50 ----- [[2022-10-13 01:32:06]] [Need: 03:54:28]
+Test Epoch(img, pixel): 28 (0.996671, 0.984513) best: (1.000, 0.990)
+Train Epoch: 29 Total_Loss: -0.417949
+  30/ 50 ----- [[2022-10-13 01:43:30]] [Need: 03:43:23]
+Test Epoch(img, pixel): 29 (0.999457, 0.987084) best: (1.000, 0.990)
+Train Epoch: 30 Total_Loss: -0.420856
+  31/ 50 ----- [[2022-10-13 01:54:38]] [Need: 03:32:14]
+Test Epoch(img, pixel): 30 (0.991338, 0.986285) best: (1.000, 0.990)
+Train Epoch: 31 Total_Loss: -0.423570
+  32/ 50 ----- [[2022-10-13 02:05:54]] [Need: 03:21:07]
+Test Epoch(img, pixel): 31 (0.999015, 0.984609) best: (1.000, 0.990)
+Train Epoch: 32 Total_Loss: -0.425922
+  33/ 50 ----- [[2022-10-13 02:16:53]] [Need: 03:09:51]
+Test Epoch(img, pixel): 32 (0.993037, 0.987364) best: (1.000, 0.990)
+Train Epoch: 33 Total_Loss: -0.428031
+  34/ 50 ----- [[2022-10-13 02:27:49]] [Need: 02:58:33]
+Test Epoch(img, pixel): 33 (0.991644, 0.985567) best: (1.000, 0.990)
+Train Epoch: 34 Total_Loss: -0.429731
+  35/ 50 ----- [[2022-10-13 02:39:00]] [Need: 02:47:26]
+Test Epoch(img, pixel): 34 (0.988519, 0.982159) best: (1.000, 0.990)
+Train Epoch: 35 Total_Loss: -0.431572
+  36/ 50 ----- [[2022-10-13 02:49:53]] [Need: 02:36:10]
+Test Epoch(img, pixel): 35 (0.992867, 0.985566) best: (1.000, 0.990)
+Train Epoch: 36 Total_Loss: -0.432882
+  37/ 50 ----- [[2022-10-13 03:00:49]] [Need: 02:24:56]
+Test Epoch(img, pixel): 36 (0.986039, 0.983797) best: (1.000, 0.990)
+Train Epoch: 37 Total_Loss: -0.434190
+  38/ 50 ----- [[2022-10-13 03:11:52]] [Need: 02:13:43]
+Test Epoch(img, pixel): 37 (0.990727, 0.983553) best: (1.000, 0.990)
+Train Epoch: 38 Total_Loss: -0.435259
+  39/ 50 ----- [[2022-10-13 03:22:57]] [Need: 02:02:34]
+Test Epoch(img, pixel): 38 (0.990659, 0.981026) best: (1.000, 0.990)
+Train Epoch: 39 Total_Loss: -0.436024
+  40/ 50 ----- [[2022-10-13 03:33:51]] [Need: 01:51:22]
+Test Epoch(img, pixel): 39 (0.989368, 0.981656) best: (1.000, 0.990)
+Train Epoch: 40 Total_Loss: -0.436774
+  41/ 50 ----- [[2022-10-13 03:44:46]] [Need: 01:40:11]
+Test Epoch(img, pixel): 40 (0.983050, 0.982550) best: (1.000, 0.990)
+Train Epoch: 41 Total_Loss: -0.437434
+  42/ 50 ----- [[2022-10-13 03:55:45]] [Need: 01:29:01]
+Test Epoch(img, pixel): 41 (0.990523, 0.985959) best: (1.000, 0.990)
+Train Epoch: 42 Total_Loss: -0.437941
+  43/ 50 ----- [[2022-10-13 04:06:35]] [Need: 01:17:50]
+Test Epoch(img, pixel): 42 (0.988451, 0.986965) best: (1.000, 0.990)
+Train Epoch: 43 Total_Loss: -0.438566
+  44/ 50 ----- [[2022-10-13 04:17:32]] [Need: 01:06:42]
+Test Epoch(img, pixel): 43 (0.983390, 0.982831) best: (1.000, 0.990)
+Train Epoch: 44 Total_Loss: -0.438494
+  45/ 50 ----- [[2022-10-13 04:28:29]] [Need: 00:55:33]
+Test Epoch(img, pixel): 44 (0.992493, 0.986517) best: (1.000, 0.990)
+Train Epoch: 45 Total_Loss: -0.438696
+  46/ 50 ----- [[2022-10-13 04:39:30]] [Need: 00:44:26]
+Test Epoch(img, pixel): 45 (0.987738, 0.985486) best: (1.000, 0.990)
+Train Epoch: 46 Total_Loss: -0.439034
+  47/ 50 ----- [[2022-10-13 04:50:15]] [Need: 00:33:18]
+Test Epoch(img, pixel): 46 (0.988145, 0.985726) best: (1.000, 0.990)
+Train Epoch: 47 Total_Loss: -0.439079
+  48/ 50 ----- [[2022-10-13 05:00:54]] [Need: 00:22:11]
+Test Epoch(img, pixel): 47 (0.989674, 0.984330) best: (1.000, 0.990)
+Train Epoch: 48 Total_Loss: -0.439110
+  49/ 50 ----- [[2022-10-13 05:11:30]] [Need: 00:11:05]
+Test Epoch(img, pixel): 48 (0.986243, 0.983192) best: (1.000, 0.990)
+Train Epoch: 49 Total_Loss: -0.439243
+  50/ 50 ----- [[2022-10-13 05:20:50]] [Need: 00:00:00]
+Test Epoch(img, pixel): 49 (0.986481, 0.986089) best: (1.000, 0.990)
+Train Epoch: 50 Total_Loss: -0.438964

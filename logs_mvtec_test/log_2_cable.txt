@@ -1,0 +1,13 @@
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'cable', 'prefix': '2022-10-14-8950', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+-------start test on cable with 2 shot----------------
+cur Image-level AUC/AUPR: 0.6357 0.7373, cur Pixel-level AUC/AUPR/IOU: 0.9450 0.3141 0.2446
+cur Image-level AUC/AUPR: 0.7157 0.7978, cur Pixel-level AUC/AUPR/IOU: 0.9461 0.3016 0.2383
+cur Image-level AUC/AUPR: 0.6674 0.7387, cur Pixel-level AUC/AUPR/IOU: 0.9355 0.2356 0.2114
+cur Image-level AUC/AUPR: 0.6645 0.7079, cur Pixel-level AUC/AUPR/IOU: 0.9376 0.2585 0.2152
+cur Image-level AUC/AUPR: 0.6447 0.7179, cur Pixel-level AUC/AUPR/IOU: 0.9434 0.2759 0.2331
+cur Image-level AUC/AUPR: 0.7581 0.8220, cur Pixel-level AUC/AUPR/IOU: 0.9474 0.3035 0.2448
+cur Image-level AUC/AUPR: 0.7747 0.8360, cur Pixel-level AUC/AUPR/IOU: 0.9425 0.2834 0.2309
+cur Image-level AUC/AUPR: 0.7661 0.8192, cur Pixel-level AUC/AUPR/IOU: 0.9413 0.2988 0.2271
+cur Image-level AUC/AUPR: 0.7522 0.8113, cur Pixel-level AUC/AUPR/IOU: 0.9438 0.3050 0.2346
+cur Image-level AUC/AUPR: 0.5965 0.6578, cur Pixel-level AUC/AUPR/IOU: 0.9403 0.2498 0.2248
+Image-level AUC/AUPR: 0.6976 0.7646, Pixel-level AUC/AUPR: 0.9423 0.2826 0.2305

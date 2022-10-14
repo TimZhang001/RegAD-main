@@ -1,0 +1,13 @@
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'capsule', 'prefix': '2022-10-14-5540', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+-------start test on capsule with 2 shot----------------
+cur Image-level AUC/AUPR: 0.7814 0.9378, cur Pixel-level AUC/AUPR/IOU: 0.9712 0.2852 0.2043
+cur Image-level AUC/AUPR: 0.6458 0.8668, cur Pixel-level AUC/AUPR/IOU: 0.9720 0.1719 0.1682
+cur Image-level AUC/AUPR: 0.6406 0.8644, cur Pixel-level AUC/AUPR/IOU: 0.9729 0.1728 0.1695
+cur Image-level AUC/AUPR: 0.7276 0.9059, cur Pixel-level AUC/AUPR/IOU: 0.9779 0.3073 0.2414
+cur Image-level AUC/AUPR: 0.6693 0.8728, cur Pixel-level AUC/AUPR/IOU: 0.9746 0.1812 0.1784
+cur Image-level AUC/AUPR: 0.6677 0.8940, cur Pixel-level AUC/AUPR/IOU: 0.9811 0.3155 0.2337
+cur Image-level AUC/AUPR: 0.6426 0.8623, cur Pixel-level AUC/AUPR/IOU: 0.9743 0.1756 0.1699
+cur Image-level AUC/AUPR: 0.7320 0.8941, cur Pixel-level AUC/AUPR/IOU: 0.9787 0.2584 0.2180
+cur Image-level AUC/AUPR: 0.6574 0.8665, cur Pixel-level AUC/AUPR/IOU: 0.9764 0.1928 0.1884
+cur Image-level AUC/AUPR: 0.6961 0.8842, cur Pixel-level AUC/AUPR/IOU: 0.9763 0.2161 0.1966
+Image-level AUC/AUPR: 0.6860 0.8849, Pixel-level AUC/AUPR: 0.9755 0.2277 0.1968

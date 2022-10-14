@@ -1,0 +1,13 @@
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'toothbrush', 'prefix': '2022-10-14-7179', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+-------start test on toothbrush with 2 shot----------------
+cur Image-level AUC/AUPR: 0.8000 0.9244, cur Pixel-level AUC/AUPR/IOU: 0.9755 0.4119 0.3175
+cur Image-level AUC/AUPR: 0.8778 0.9535, cur Pixel-level AUC/AUPR/IOU: 0.9839 0.4672 0.3994
+cur Image-level AUC/AUPR: 0.9778 0.9912, cur Pixel-level AUC/AUPR/IOU: 0.9863 0.4823 0.4114
+cur Image-level AUC/AUPR: 0.8778 0.9531, cur Pixel-level AUC/AUPR/IOU: 0.9839 0.4651 0.3974
+cur Image-level AUC/AUPR: 0.9389 0.9741, cur Pixel-level AUC/AUPR/IOU: 0.9873 0.4886 0.4161
+cur Image-level AUC/AUPR: 0.7806 0.9189, cur Pixel-level AUC/AUPR/IOU: 0.9746 0.4051 0.3078
+cur Image-level AUC/AUPR: 0.9083 0.9637, cur Pixel-level AUC/AUPR/IOU: 0.9865 0.4793 0.4067
+cur Image-level AUC/AUPR: 0.8861 0.9531, cur Pixel-level AUC/AUPR/IOU: 0.9805 0.4289 0.3258
+cur Image-level AUC/AUPR: 0.7500 0.9053, cur Pixel-level AUC/AUPR/IOU: 0.9838 0.4653 0.3944
+cur Image-level AUC/AUPR: 0.8611 0.9454, cur Pixel-level AUC/AUPR/IOU: 0.9801 0.4216 0.3256
+Image-level AUC/AUPR: 0.8658 0.9483, Pixel-level AUC/AUPR: 0.9823 0.4515 0.3702

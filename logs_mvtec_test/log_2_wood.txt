@@ -1,0 +1,13 @@
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'wood', 'prefix': '2022-10-14-4214', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+-------start test on wood with 2 shot----------------
+cur Image-level AUC/AUPR: 0.9991 0.9997, cur Pixel-level AUC/AUPR/IOU: 0.9687 0.5785 0.3878
+cur Image-level AUC/AUPR: 0.9956 0.9986, cur Pixel-level AUC/AUPR/IOU: 0.9618 0.5581 0.3804
+cur Image-level AUC/AUPR: 0.9982 0.9994, cur Pixel-level AUC/AUPR/IOU: 0.9633 0.5581 0.3774
+cur Image-level AUC/AUPR: 0.9974 0.9992, cur Pixel-level AUC/AUPR/IOU: 0.9660 0.5789 0.3957
+cur Image-level AUC/AUPR: 0.9939 0.9981, cur Pixel-level AUC/AUPR/IOU: 0.9634 0.5574 0.3764
+cur Image-level AUC/AUPR: 0.9982 0.9994, cur Pixel-level AUC/AUPR/IOU: 0.9652 0.5808 0.3961
+cur Image-level AUC/AUPR: 0.9991 0.9997, cur Pixel-level AUC/AUPR/IOU: 0.9663 0.5691 0.3840
+cur Image-level AUC/AUPR: 0.9982 0.9994, cur Pixel-level AUC/AUPR/IOU: 0.9679 0.5801 0.3994
+cur Image-level AUC/AUPR: 0.9991 0.9997, cur Pixel-level AUC/AUPR/IOU: 0.9642 0.5595 0.3764
+cur Image-level AUC/AUPR: 0.9991 0.9997, cur Pixel-level AUC/AUPR/IOU: 0.9634 0.5590 0.3732
+Image-level AUC/AUPR: 0.9978 0.9993, Pixel-level AUC/AUPR: 0.9650 0.5680 0.3847
