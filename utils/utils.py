@@ -64,7 +64,7 @@ def get_custom_support_set(args):
 '''
 
 
-def visualize_results(test_img, scores, img_scores, gts, threshold, cls_threshold, cur_few_list, save_dir, class_name):
+def visualize_results(test_img, scores, img_scores, gts, query_features, threshold, cls_threshold, cur_few_list, save_dir, class_name):
     num = len(scores)
     vmax = scores.max() * 255.
     vmin = scores.min() * 255.
@@ -83,7 +83,7 @@ def visualize_results(test_img, scores, img_scores, gts, threshold, cls_threshol
         mask = morphology.opening(mask, kernel)
         mask *= 255
         vis_img = mark_boundaries(img, mask, color=(1, 0, 0), mode='thick')
-        fig_img, ax_img = plt.subplots(1, 4, figsize=(9, 3), gridspec_kw={'width_ratios': [4, 4, 4, 3]})
+        fig_img, ax_img = plt.subplots(1, 7, figsize=(15, 3), gridspec_kw={'width_ratios': [4, 4, 4, 4, 4, 4, 3]})
 
         fig_img.subplots_adjust(wspace=0.05, hspace=0)
         for ax_i in ax_img:
@@ -97,8 +97,15 @@ def visualize_results(test_img, scores, img_scores, gts, threshold, cls_threshol
         ax_img[2].imshow(heat_map, cmap='jet', norm=norm, interpolation='none')
         ax_img[2].imshow(vis_img, cmap='gray', alpha=0.7, interpolation='none')
         ax_img[2].title.set_text('Segmentation')
+        
+        for j in range(3, 6):
+            featuremap = query_features[j-3][i]
+            ax_img[j].imshow(featuremap, cmap='jet')
+            ax_img[j].title.set_text('featuremap {}'.format(j-3))
+        
+
         black_mask = np.zeros((int(mask.shape[0]), int(3 * mask.shape[1] / 4)))
-        ax_img[3].imshow(black_mask, cmap='gray')
+        ax_img[6].imshow(black_mask, cmap='gray')
         ax = plt.gca()
         if img_scores[i] > cls_threshold:
             cls_result = 'nok'
@@ -226,8 +233,7 @@ def visualize_results(test_img, scores, img_scores, gts, threshold, cls_threshol
                     color='w',
                     family='sans-serif',
                 ))
-        ax_img[3].title.set_text('Classification')
-
+        ax_img[6].title.set_text('Classification')
         fig_img.savefig(os.path.join(save_dir, class_name + '_{}'.format(i)), dpi=300, bbox_inches='tight')
         plt.close()
 

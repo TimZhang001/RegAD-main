@@ -27,7 +27,9 @@ warnings.filterwarnings("ignore")
 use_cuda = torch.cuda.is_available()
 device = torch.device('cuda' if use_cuda else 'cpu')
 
-
+'''
+1. 将提取的features进行平均，得到不同layer下的平均feature map
+'''
 def get_layers_feature_map(test_outputs):
 
     # 得到layer1, layer2, layer3的输出
@@ -35,21 +37,33 @@ def get_layers_feature_map(test_outputs):
     layer_feature2 = test_outputs['layer2']
     layer_feature3 = test_outputs['layer3']
 
+    output_layers1 = []
+    output_layers2 = []
+    output_layers3 = []
+
     for index in range(len(layer_feature1)):
-        layer_feature1[index] = torch.mean(layer_feature1[index], dim=1, keepdim=True)
+        output_layers = torch.mean(layer_feature1[index], dim=1, keepdim=False)
+        output_layers = output_layers.squeeze().cpu().numpy()
+        output_layers1.append(output_layers)
 
     for index in range(len(layer_feature2)):
-        layer_feature2[index] = torch.mean(layer_feature2[index], dim=1, keepdim=True)
+        output_layers = torch.mean(layer_feature2[index], dim=1, keepdim=False)
+        output_layers = output_layers.squeeze().cpu().numpy()
+        output_layers2.append(output_layers)
     
     for index in range(len(layer_feature3)):
-        layer_feature3[index] = torch.mean(layer_feature3[index], dim=1, keepdim=True)
+        output_layers = torch.mean(layer_feature3[index], dim=1, keepdim=False)
+        output_layers = output_layers.squeeze().cpu().numpy()
+        output_layers3.append(output_layers)
     
-    return layer_feature1, layer_feature2, layer_feature3
+    return output_layers1, output_layers2, output_layers3
+
 
 def usr_parser():
     parser = argparse.ArgumentParser(description='RegAD on MVtec')
     parser.add_argument('--obj', type=str, default='hazelnut')
     parser.add_argument('--gpu', type=int, default=0)
+    parser.add_argument('--vis', type=int, default=1)
     parser.add_argument('--data_type', type=str, default='mvtec')
     parser.add_argument('--data_path', type=str, default='./MVTec/MVTec_AD')
     parser.add_argument('--epochs', type=int, default=50, help='maximum training epochs')
@@ -162,12 +176,16 @@ def main(args):
         # print results
         print_log('cur Image-level AUC/AUPR: {:.4f} {:.4f}, cur Pixel-level AUC/AUPR/IOU: {:.4f} {:.4f} {:.4f}'.format(img_auc, img_aupr, pixel_auc, pixel_aupr, iou_score), log)
 
-        if (0):
+        if (args.vis):
+            
+            if inference_round > 0:
+                continue
+            
             # save image path
             image_dir    = f'./vis_reuslt/{args.obj}/{args.shot}/{inference_round}/'
             if not os.path.exists(image_dir):
                 os.makedirs(image_dir, exist_ok=True)
-            visualize_results(test_imgs, scores, img_scores, gt_mask_list, seg_th, cls_th, cur_few_list, image_dir, args.obj)
+            visualize_results(test_imgs, scores, img_scores, gt_mask_list, query_features, seg_th, cls_th, cur_few_list, image_dir, args.obj)
 
     image_auc_list  = np.array(image_auc_list)
     pixel_auc_list  = np.array(pixel_auc_list)
@@ -180,6 +198,7 @@ def main(args):
     mean_pixel_aupr = np.mean(pixel_aupr_list, axis = 0)
     mean_iou_score  = np.mean(iou_score_list, axis = 0)
     print_log('Image-level AUC/AUPR: {:.4f} {:.4f}, Pixel-level AUC/AUPR: {:.4f} {:.4f} {:.4f}'.format(mean_img_auc, mean_img_aupr, mean_pixel_auc, mean_pixel_aupr, mean_iou_score), log)
+
 
 def test(args, models, cur_epoch, fixed_fewshot_list, test_loader, **kwargs):
     STN = models[0]
@@ -268,7 +287,7 @@ def test(args, models, cur_epoch, fixed_fewshot_list, test_loader, **kwargs):
         test_outputs['layer2'].append(STN.stn2_output)
         test_outputs['layer3'].append(STN.stn3_output)
 
-    #query_features = get_layers_feature_map(test_outputs)
+    query_features = get_layers_feature_map(test_outputs)
     
     for k, v in test_outputs.items():
         test_outputs[k] = torch.cat(v, 0)
