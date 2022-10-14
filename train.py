@@ -1,3 +1,8 @@
+'''
+1. RegAD: Registration based Few-Shot Anomaly Detection
+
+'''
+
 import os
 import random
 import argparse
