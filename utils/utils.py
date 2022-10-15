@@ -241,8 +241,46 @@ def visualize_results(test_img, scores, img_scores, gts, query_features, thresho
         img = cur_few_list[i]
         img = img.numpy()
         img = denormalization(img)
-        cv2.imencode('.tif', img)[1].tofile(os.path.join(save_dir, class_name + 'fewshot_support_{}.tif'.format(i)))
+        cv2.imencode('.png', img)[1].tofile(os.path.join(save_dir, class_name + 'fewshot_support_{}.png'.format(i)))
 
+def visualize_augment_image(augment_image, save_dir, class_name):
+    num            = len(augment_image)
+    imagew, imageh = np.int(augment_image[0].shape[1]), np.int(augment_image[0].shape[2])
+    augment_image1 = []
+    augment_image2 = []
+
+    for i in range(num):
+        if i % 2 == 0:
+            augment_image1.append(augment_image[i])
+        else:
+            augment_image2.append(augment_image[i])
+    
+    show_image1 = np.zeros((imagew * 5, imageh * 5, 3), dtype=np.uint8)
+    show_image2 = np.zeros((imagew * 5, imageh * 5, 3), dtype=np.uint8)
+
+    # 一张图像 扩充到22张图像, 5*5张进行排列
+    for i in range(len(augment_image1)):
+        img     = augment_image1[i]
+        img     = img.numpy()
+        img     = denormalization(img)
+        x       = i // 5
+        y       = i % 5
+        start_x = int(x * imagew)
+        start_y = int(y * imageh)
+        show_image1[start_x:(start_x+imagew), start_y:(start_y+imageh), :] = img
+    
+    for i in range(len(augment_image2)):
+        img     = augment_image[i]
+        img     = img.numpy()
+        img     = denormalization(img)
+        x       = i // 5
+        y       = i % 5
+        start_x = int(x * imagew)
+        start_y = int(y * imageh)
+        show_image2[start_x:(start_x+imagew), start_y:(start_y+imageh), :] = img
+
+    cv2.imencode('.png', show_image1)[1].tofile(os.path.join(save_dir, class_name + '_augment_1.png'))
+    cv2.imencode('.png', show_image2)[1].tofile(os.path.join(save_dir, class_name + '_augment_2.png'))
 
 def denormalization(x):
     #mean = np.array([0.485, 0.456, 0.406])

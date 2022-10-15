@@ -10,7 +10,7 @@ from torch.optim import optimizer
 import torch.nn.functional as F
 from tqdm import tqdm
 from datasets.mvtec import FSAD_Dataset_train, FSAD_Dataset_test, CLASS_NAMES
-from utils.utils import time_file_str, time_string, convert_secs2time, AverageMeter, print_log, visualize_results, denormalization
+from utils.utils import time_file_str, time_string, convert_secs2time, AverageMeter, print_log, visualize_results, denormalization, visualize_augment_image
 from models.siamese import Encoder, Predictor
 from models.stn import stn_net
 from losses.norm_loss import CosLoss
@@ -61,23 +61,34 @@ def get_layers_feature_map(test_outputs):
 
 def usr_parser():
     parser = argparse.ArgumentParser(description='RegAD on MVtec')
-    parser.add_argument('--obj', type=str, default='hazelnut')
-    parser.add_argument('--gpu', type=int, default=0)
-    parser.add_argument('--vis', type=int, default=1)
-    parser.add_argument('--data_type', type=str, default='mvtec')
-    parser.add_argument('--data_path', type=str, default='./MVTec/MVTec_AD')
-    parser.add_argument('--epochs', type=int, default=50, help='maximum training epochs')
+    parser.add_argument('--obj',        type=str, default='hazelnut')
+    parser.add_argument('--gpu',        type=int, default=0)
+    parser.add_argument('--vis',        type=int, default=1)
+    parser.add_argument('--data_type',  type=str, default='mvtec')
+    parser.add_argument('--data_path',  type=str, default='./MVTec/MVTec_AD')
+    parser.add_argument('--epochs',     type=int, default=50, help='maximum training epochs')
     parser.add_argument('--batch_size', type=int, default=32)
-    parser.add_argument('--img_size', type=int, default=224)
-    parser.add_argument('--lr', type=float, default=0.01, help='learning rate in SGD')
-    parser.add_argument('--momentum', type=float, default=0.9, help='momentum of SGD')
-    parser.add_argument('--seed', type=int, default=668, help='manual seed')
-    parser.add_argument('--shot', type=int, default=2, help='shot count')
-    parser.add_argument('--inferences', type=int, default=10, help='number of rounds per inference')
-    parser.add_argument('--stn_mode', type=str, default='rotation_scale', help='[affine, translation, rotation, scale, shear, rotation_scale, translation_scale, rotation_translation, rotation_translation_scale]')
+    parser.add_argument('--img_size',   type=int, default=224)
+    parser.add_argument('--lr',         type=float, default=0.01, help='learning rate in SGD')
+    parser.add_argument('--momentum',   type=float, default=0.9,  help='momentum of SGD')
+    parser.add_argument('--seed',       type=int,   default=668,  help='manual seed')
+    parser.add_argument('--shot',       type=int,   default=2,    help='shot count')
+    parser.add_argument('--inferences', type=int,   default=10,   help='number of rounds per inference')
+    parser.add_argument('--stn_mode',   type=str,   default='rotation_scale', help='[affine, translation, rotation, scale, shear, rotation_scale, translation_scale, rotation_translation, rotation_translation_scale]')
     args = parser.parse_args()
     return args
 
+def get_save_path(args, inference_round, add_str=''):
+    # save image path
+    image_dir = f'./vis_result/{args.obj}/{args.shot}/{inference_round}/'
+
+    if add_str != '':
+        image_dir = image_dir + add_str + '/'
+
+    if not os.path.exists(image_dir):
+        os.makedirs(image_dir, exist_ok=True)
+
+    return image_dir
 
 def main(args):
 
@@ -176,15 +187,9 @@ def main(args):
         # print results
         print_log('cur Image-level AUC/AUPR: {:.4f} {:.4f}, cur Pixel-level AUC/AUPR/IOU: {:.4f} {:.4f} {:.4f}'.format(img_auc, img_aupr, pixel_auc, pixel_aupr, iou_score), log)
 
-        if (args.vis):
-            
-            if inference_round > 0:
-                continue
-            
+        if (args.vis and inference_round == 0):
             # save image path
-            image_dir    = f'./vis_reuslt/{args.obj}/{args.shot}/{inference_round}/'
-            if not os.path.exists(image_dir):
-                os.makedirs(image_dir, exist_ok=True)
+            image_dir = get_save_path(args, inference_round)
             visualize_results(test_imgs, scores, img_scores, gt_mask_list, query_features, seg_th, cls_th, cur_few_list, image_dir, args.obj)
 
     image_auc_list  = np.array(image_auc_list)
@@ -200,6 +205,46 @@ def main(args):
     print_log('Image-level AUC/AUPR: {:.4f} {:.4f}, Pixel-level AUC/AUPR: {:.4f} {:.4f} {:.4f}'.format(mean_img_auc, mean_img_aupr, mean_pixel_auc, mean_pixel_aupr, mean_iou_score), log)
 
 
+def get_support_augment_images(args, fixed_fewshot_list, cur_epoch):
+    
+    support_img         = fixed_fewshot_list[cur_epoch]
+    augment_support_img = support_img
+    # rotate img with small angle
+    for angle in [-np.pi/4, -3 * np.pi/16, -np.pi/8, -np.pi/16, np.pi/16, np.pi/8, 3 * np.pi/16, np.pi/4]:
+        rotate_img          = rot_img(support_img, angle)
+        augment_support_img = torch.cat([augment_support_img, rotate_img], dim=0)
+    
+    # translate img
+    for a,b in [(0.2,0.2), (-0.2,0.2), (-0.2,-0.2), (0.2,-0.2), (0.1,0.1), (-0.1,0.1), (-0.1,-0.1), (0.1,-0.1)]:
+        trans_img           = translation_img(support_img, a, b)
+        augment_support_img = torch.cat([augment_support_img, trans_img], dim=0)
+    
+    # hflip img
+    flipped_img         = hflip_img(support_img)
+    augment_support_img = torch.cat([augment_support_img, flipped_img], dim=0)
+    
+    # rgb to grey img
+    greyed_img          = grey_img(support_img)
+    augment_support_img = torch.cat([augment_support_img, greyed_img], dim=0)
+    
+    # rotate img in 90 degree
+    for angle in [1,2,3]:
+        rotate90_img        = rot90_img(support_img, angle)
+        augment_support_img = torch.cat([augment_support_img, rotate90_img], dim=0)
+    
+    image_dir = get_save_path(args, cur_epoch, 'support')
+    visualize_augment_image(augment_support_img, image_dir, args.obj)
+    
+    # rand shuffle support image
+    augment_support_img = augment_support_img[torch.randperm(augment_support_img.size(0))]
+
+    # visualize and save
+    #visualize_results(support_img, None, None, None, None, None, None, None, './vis_reuslt/rotate/', 'rotate')
+
+    return augment_support_img
+
+
+
 def test(args, models, cur_epoch, fixed_fewshot_list, test_loader, **kwargs):
     STN = models[0]
     ENC = models[1]
@@ -212,28 +257,8 @@ def test(args, models, cur_epoch, fixed_fewshot_list, test_loader, **kwargs):
     train_outputs = OrderedDict([('layer1', []), ('layer2', []), ('layer3', [])])
     test_outputs  = OrderedDict([('layer1', []), ('layer2', []), ('layer3', [])])
 
-    support_img = fixed_fewshot_list[cur_epoch]
-    augment_support_img = support_img
-    # rotate img with small angle
-    for angle in [-np.pi/4, -3 * np.pi/16, -np.pi/8, -np.pi/16, np.pi/16, np.pi/8, 3 * np.pi/16, np.pi/4]:
-        rotate_img = rot_img(support_img, angle)
-        augment_support_img = torch.cat([augment_support_img, rotate_img], dim=0)
-    # translate img
-    for a,b in [(0.2,0.2), (-0.2,0.2), (-0.2,-0.2), (0.2,-0.2), (0.1,0.1), (-0.1,0.1), (-0.1,-0.1), (0.1,-0.1)]:
-        trans_img = translation_img(support_img, a, b)
-        augment_support_img = torch.cat([augment_support_img, trans_img], dim=0)
-    # hflip img
-    flipped_img = hflip_img(support_img)
-    augment_support_img = torch.cat([augment_support_img, flipped_img], dim=0)
-    # rgb to grey img
-    greyed_img = grey_img(support_img)
-    augment_support_img = torch.cat([augment_support_img, greyed_img], dim=0)
-    # rotate img in 90 degree
-    for angle in [1,2,3]:
-        rotate90_img = rot90_img(support_img, angle)
-        augment_support_img = torch.cat([augment_support_img, rotate90_img], dim=0)
-    augment_support_img = augment_support_img[torch.randperm(augment_support_img.size(0))]
-
+    augment_support_img = get_support_augment_images(args, fixed_fewshot_list, cur_epoch)
+    
     # torch version
     with torch.no_grad():
         support_feat = STN(augment_support_img.to(device))
@@ -254,8 +279,8 @@ def test(args, models, cur_epoch, fixed_fewshot_list, test_loader, **kwargs):
     B, C, H, W = embedding_vectors.size()
     embedding_vectors = embedding_vectors.view(B, C, H * W)
     mean = torch.mean(embedding_vectors, dim=0)
-    cov = torch.zeros(C, C, H * W).to(device)
-    I = torch.eye(C).to(device)
+    cov  = torch.zeros(C, C, H * W).to(device)
+    I    = torch.eye(C).to(device)
     for i in range(H * W):
         cov[:, :, i] = torch.cov(embedding_vectors[:, :, i].T) + 0.01 * I
     train_outputs = [mean, cov]
