@@ -1,4 +1,5 @@
 /MVTec
 /save_checkpoints
 /support_set
-/vis_result
+/vis_reuslt
+/__pycache__

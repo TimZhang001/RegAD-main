@@ -1,4 +1,4 @@
-{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'carpet', 'prefix': '2022-10-14-3129', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'carpet', 'prefix': '2022-10-14-3894', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
 -------start test on carpet with 2 shot----------------
 cur Image-level AUC/AUPR: 0.9727 0.9916, cur Pixel-level AUC/AUPR/IOU: 0.9890 0.5600 0.4277
 cur Image-level AUC/AUPR: 0.9603 0.9882, cur Pixel-level AUC/AUPR/IOU: 0.9883 0.5499 0.4283

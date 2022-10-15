@@ -1,4 +1,4 @@
-{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'leather', 'prefix': '2022-10-14-714', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'leather', 'prefix': '2022-10-14-4204', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
 -------start test on leather with 2 shot----------------
 cur Image-level AUC/AUPR: 1.0000 1.0000, cur Pixel-level AUC/AUPR/IOU: 0.9919 0.4219 0.2901
 cur Image-level AUC/AUPR: 1.0000 1.0000, cur Pixel-level AUC/AUPR/IOU: 0.9921 0.4257 0.2958

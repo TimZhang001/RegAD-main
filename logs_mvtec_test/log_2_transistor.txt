@@ -1,4 +1,4 @@
-{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'transistor', 'prefix': '2022-10-14-8472', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'transistor', 'prefix': '2022-10-15-970', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
 -------start test on transistor with 2 shot----------------
 cur Image-level AUC/AUPR: 0.8196 0.7929, cur Pixel-level AUC/AUPR/IOU: 0.9391 0.5401 0.3619
 cur Image-level AUC/AUPR: 0.8888 0.8794, cur Pixel-level AUC/AUPR/IOU: 0.9560 0.6358 0.4272

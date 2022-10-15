@@ -1,4 +1,4 @@
-{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'screw', 'prefix': '2022-10-14-1616', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale'}
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'screw', 'prefix': '2022-10-15-5439', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
 -------start test on screw with 2 shot----------------
 cur Image-level AUC/AUPR: 0.5681 0.7604, cur Pixel-level AUC/AUPR/IOU: 0.9441 0.0245 0.0243
 cur Image-level AUC/AUPR: 0.6137 0.7937, cur Pixel-level AUC/AUPR/IOU: 0.9510 0.0287 0.0308
