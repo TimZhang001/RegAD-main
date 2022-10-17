@@ -1,4 +1,4 @@
-{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'cable', 'prefix': '2022-10-14-5891', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'cable', 'prefix': '2022-10-16-20', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
 -------start test on cable with 2 shot----------------
 cur Image-level AUC/AUPR: 0.6357 0.7373, cur Pixel-level AUC/AUPR/IOU: 0.9450 0.3141 0.2446
 cur Image-level AUC/AUPR: 0.7157 0.7978, cur Pixel-level AUC/AUPR/IOU: 0.9461 0.3016 0.2383

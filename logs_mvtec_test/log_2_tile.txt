@@ -1,4 +1,4 @@
-{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'tile', 'prefix': '2022-10-15-8254', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'tile', 'prefix': '2022-10-16-397', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
 -------start test on tile with 2 shot----------------
 cur Image-level AUC/AUPR: 0.9823 0.9926, cur Pixel-level AUC/AUPR/IOU: 0.9509 0.5585 0.4325
 cur Image-level AUC/AUPR: 0.9910 0.9967, cur Pixel-level AUC/AUPR/IOU: 0.9482 0.5698 0.4287

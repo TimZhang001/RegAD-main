@@ -1,4 +1,4 @@
-{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'bottle', 'prefix': '2022-10-14-4798', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'bottle', 'prefix': '2022-10-17-4916', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
 -------start test on bottle with 2 shot----------------
 cur Image-level AUC/AUPR: 0.9857 0.9958, cur Pixel-level AUC/AUPR/IOU: 0.9854 0.7615 0.6061
 cur Image-level AUC/AUPR: 0.9984 0.9995, cur Pixel-level AUC/AUPR/IOU: 0.9856 0.7623 0.6079
@@ -6,8 +6,3 @@ cur Image-level AUC/AUPR: 0.9984 0.9995, cur Pixel-level AUC/AUPR/IOU: 0.9860 0.
 cur Image-level AUC/AUPR: 0.9960 0.9987, cur Pixel-level AUC/AUPR/IOU: 0.9843 0.7476 0.5959
 cur Image-level AUC/AUPR: 0.9984 0.9995, cur Pixel-level AUC/AUPR/IOU: 0.9862 0.7638 0.6152
 cur Image-level AUC/AUPR: 0.9976 0.9992, cur Pixel-level AUC/AUPR/IOU: 0.9862 0.7688 0.6139
-cur Image-level AUC/AUPR: 0.9976 0.9992, cur Pixel-level AUC/AUPR/IOU: 0.9865 0.7677 0.6178
-cur Image-level AUC/AUPR: 1.0000 1.0000, cur Pixel-level AUC/AUPR/IOU: 0.9857 0.7633 0.6049
-cur Image-level AUC/AUPR: 1.0000 1.0000, cur Pixel-level AUC/AUPR/IOU: 0.9857 0.7625 0.6086
-cur Image-level AUC/AUPR: 1.0000 1.0000, cur Pixel-level AUC/AUPR/IOU: 0.9856 0.7610 0.6071
-Image-level AUC/AUPR: 0.9972 0.9992, Pixel-level AUC/AUPR: 0.9857 0.7624 0.6090

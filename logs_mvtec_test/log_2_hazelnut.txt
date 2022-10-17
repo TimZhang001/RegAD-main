@@ -1,4 +1,4 @@
-{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'hazelnut', 'prefix': '2022-10-14-968', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
+{'batch_size': 32, 'data_path': './MVTec/MVTec_AD', 'data_type': 'mvtec', 'epochs': 50, 'gpu': 0, 'img_size': 224, 'inferences': 10, 'input_channel': 3, 'lr': 0.01, 'momentum': 0.9, 'obj': 'hazelnut', 'prefix': '2022-10-16-9300', 'save_dir': './logs_mvtec_test/', 'seed': 668, 'shot': 2, 'stn_mode': 'rotation_scale', 'vis': 1}
 -------start test on hazelnut with 2 shot----------------
 cur Image-level AUC/AUPR: 0.9557 0.9748, cur Pixel-level AUC/AUPR/IOU: 0.9830 0.5427 0.3875
 cur Image-level AUC/AUPR: 0.9789 0.9884, cur Pixel-level AUC/AUPR/IOU: 0.9841 0.5738 0.4189

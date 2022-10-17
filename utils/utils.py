@@ -241,7 +241,8 @@ def visualize_results(test_img, scores, img_scores, gts, query_features, thresho
         img = cur_few_list[i]
         img = img.numpy()
         img = denormalization(img)
-        cv2.imencode('.png', img)[1].tofile(os.path.join(save_dir, class_name + 'fewshot_support_{}.png'.format(i)))
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+        cv2.imencode('.png', img)[1].tofile(os.path.join(save_dir, 'support', class_name + '_fewshot_support_{}.png'.format(i)))
 
 def visualize_augment_image(augment_image, save_dir, class_name):
     num            = len(augment_image)
@@ -279,6 +280,8 @@ def visualize_augment_image(augment_image, save_dir, class_name):
         start_y = int(y * imageh)
         show_image2[start_x:(start_x+imagew), start_y:(start_y+imageh), :] = img
 
+    show_image1 = cv2.cvtColor(show_image1, cv2.COLOR_RGB2BGR)
+    show_image2 = cv2.cvtColor(show_image2, cv2.COLOR_RGB2BGR)
     cv2.imencode('.png', show_image1)[1].tofile(os.path.join(save_dir, class_name + '_augment_1.png'))
     cv2.imencode('.png', show_image2)[1].tofile(os.path.join(save_dir, class_name + '_augment_2.png'))
 
