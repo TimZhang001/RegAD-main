@@ -12,6 +12,8 @@ CLASS_NAMES = [
     'toothbrush', 'transistor', 'wood', 'zipper'
 ]
 
+#  训练过程，选择与该object不同的object的所有good样本作为训练集
+#  其中训练集的输入是一张正常样本，然后随机选择两张不一样的正常样本，作为support set，形成一个batch进行训练
 class FSAD_Dataset_train(Dataset):
     def __init__(self,
                  dataset_path='../data/mvtec_anomaly_detection',
@@ -178,6 +180,7 @@ class FSAD_Dataset_test(Dataset):
             transforms.ToTensor(),
             # transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
+        
         self.transform_mask = transforms.Compose(
             [transforms.Resize(resize, Image.NEAREST),
              transforms.ToTensor()])

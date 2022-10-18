@@ -151,7 +151,7 @@ def main(args):
         scores            = (scores - min_anomaly_score) / (max_anomaly_score - min_anomaly_score)
 
         # ground truth
-        gt_list    = np.asarray(gt_list)
+        gt_list   = np.asarray(gt_list)
         gt_mask   = np.asarray(gt_mask_list)
         gt_mask   = (gt_mask > 0.5).astype(np.int_)
 
@@ -179,10 +179,6 @@ def main(args):
         iou_score         = iou.max()
         seg_thresh        = float(scipy.interpolate.interp1d(iou, thresh_)(iou_score))
         iou_score_list.append(iou_score)
-
-        # PR95--------------------------------------------------------------------
-        #img_fpr, img_tpr, img_thresh         = roc_curve(gt_list ,img_scores)
-        #pixel_fpr,  pixel_tpr,  pixel_thresh = roc_curve(gt_mask.flatten() ,scores.flatten())
 
         # print results
         print_log('cur Image-level AUC/AUPR: {:.4f} {:.4f}, cur Pixel-level AUC/AUPR/IOU: {:.4f} {:.4f} {:.4f}'.format(img_auc, img_aupr, pixel_auc, pixel_aupr, iou_score), log)

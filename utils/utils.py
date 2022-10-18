@@ -79,8 +79,8 @@ def visualize_results(test_img, scores, img_scores, gts, query_features, thresho
         mask = scores[i]
         mask[mask > threshold] = 1
         mask[mask <= threshold] = 0
-        kernel = morphology.disk(4)
-        mask = morphology.opening(mask, kernel)
+        #kernel = morphology.disk(4)
+        #mask = morphology.opening(mask, kernel)
         mask *= 255
         vis_img = mark_boundaries(img, mask, color=(1, 0, 0), mode='thick')
         fig_img, ax_img = plt.subplots(1, 7, figsize=(15, 3), gridspec_kw={'width_ratios': [4, 4, 4, 4, 4, 4, 3]})
