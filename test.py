@@ -10,7 +10,7 @@ from torch.optim import optimizer
 import torch.nn.functional as F
 from tqdm import tqdm
 from datasets.mvtec import FSAD_Dataset_train, FSAD_Dataset_test, CLASS_NAMES
-from utils.utils import time_file_str, time_string, convert_secs2time, AverageMeter, print_log, visualize_results, denormalization, visualize_augment_image
+from utils.utils import time_file_str, time_string, convert_secs2time, AverageMeter, print_log, visualize_results, visualize_augment_image, visualize_augment_image_2
 from models.siamese import Encoder, Predictor
 from models.stn import stn_net
 from losses.norm_loss import CosLoss
@@ -61,7 +61,7 @@ def get_layers_feature_map(test_outputs):
 
 def usr_parser():
     parser = argparse.ArgumentParser(description='RegAD on MVtec')
-    parser.add_argument('--obj',        type=str, default='hazelnut')
+    parser.add_argument('--obj',        type=str, default='metal_nut')
     parser.add_argument('--gpu',        type=int, default=0)
     parser.add_argument('--vis',        type=int, default=1)
     parser.add_argument('--data_type',  type=str, default='mvtec')
@@ -200,36 +200,44 @@ def main(args):
     mean_iou_score  = np.mean(iou_score_list, axis = 0)
     print_log('Image-level AUC/AUPR: {:.4f} {:.4f}, Pixel-level AUC/AUPR: {:.4f} {:.4f} {:.4f}'.format(mean_img_auc, mean_img_aupr, mean_pixel_auc, mean_pixel_aupr, mean_iou_score), log)
 
-
 def get_support_augment_images(args, fixed_fewshot_list, cur_epoch):
     
     support_img         = fixed_fewshot_list[cur_epoch]
     augment_support_img = support_img
-    # rotate img with small angle
-    for angle in [-np.pi/4, -3 * np.pi/16, -np.pi/8, -np.pi/16, np.pi/16, np.pi/8, 3 * np.pi/16, np.pi/4]:
-        rotate_img          = rot_img(support_img, angle)
-        augment_support_img = torch.cat([augment_support_img, rotate_img], dim=0)
-    
-    # translate img
-    for a,b in [(0.2,0.2), (-0.2,0.2), (-0.2,-0.2), (0.2,-0.2), (0.1,0.1), (-0.1,0.1), (-0.1,-0.1), (0.1,-0.1)]:
-        trans_img           = translation_img(support_img, a, b)
-        augment_support_img = torch.cat([augment_support_img, trans_img], dim=0)
     
     # hflip img
     flipped_img         = hflip_img(support_img)
+    show_img            = flipped_img[0].permute(1, 2, 0).cpu().numpy()
     augment_support_img = torch.cat([augment_support_img, flipped_img], dim=0)
     
     # rgb to grey img
     greyed_img          = grey_img(support_img)
+    show_img            = greyed_img[0].permute(1, 2, 0).cpu().numpy()
     augment_support_img = torch.cat([augment_support_img, greyed_img], dim=0)
     
     # rotate img in 90 degree
     for angle in [1,2,3]:
         rotate90_img        = rot90_img(support_img, angle)
+        show_img            = rotate90_img[0].permute(1, 2, 0).cpu().numpy()
         augment_support_img = torch.cat([augment_support_img, rotate90_img], dim=0)
+
+    # rotate img with small angle
+    for angle in [-np.pi/4, -3 * np.pi/16, -np.pi/8, -np.pi/16, np.pi/16, np.pi/8, 3 * np.pi/16, np.pi/4]:
+        rotate_img          = rot_img(support_img, angle)
+        show_img            = rotate_img[0].permute(1, 2, 0).cpu().numpy()
+        augment_support_img = torch.cat([augment_support_img, rotate_img], dim=0)
+    
+    # translate img
+    for a,b in [(0.2,0.2), (-0.2,0.2), (-0.2,-0.2), (0.2,-0.2), (0.1,0.1), (-0.1,0.1), (-0.1,-0.1), (0.1,-0.1)]:
+        trans_img           = translation_img(support_img, a, b)
+        show_img            = trans_img[0].permute(1, 2, 0).cpu().numpy()
+        augment_support_img = torch.cat([augment_support_img, trans_img], dim=0)
     
     image_dir = get_save_path(args, cur_epoch, 'support')
-    visualize_augment_image(augment_support_img, image_dir, args.obj)
+    if(args.shot == 2):
+        visualize_augment_image_2(augment_support_img, image_dir, args.obj)
+    else:
+        visualize_augment_image(augment_support_img, image_dir, args.obj)
     
     # rand shuffle support image
     augment_support_img = augment_support_img[torch.randperm(augment_support_img.size(0))]
@@ -238,8 +246,6 @@ def get_support_augment_images(args, fixed_fewshot_list, cur_epoch):
     #visualize_results(support_img, None, None, None, None, None, None, None, './vis_reuslt/rotate/', 'rotate')
 
     return augment_support_img
-
-
 
 def test(args, models, cur_epoch, fixed_fewshot_list, test_loader, **kwargs):
     STN = models[0]
@@ -343,6 +349,6 @@ def test(args, models, cur_epoch, fixed_fewshot_list, test_loader, **kwargs):
 
 if __name__ == '__main__':
     args = usr_parser()
-    for obj in CLASS_NAMES:
-        args.obj = obj
-        main(args)
+    #for obj in CLASS_NAMES:
+    #    args.obj = obj
+    main(args)

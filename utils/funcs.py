@@ -35,17 +35,17 @@ def get_translation_mat(a, b):
                          [0, 1, b]])
 
 def rot_img(x, theta):
-    dtype =  torch.FloatTensor
+    dtype   = torch.FloatTensor
     rot_mat = get_rot_mat(theta)[None, ...].type(dtype).repeat(x.shape[0],1,1)
-    grid = F.affine_grid(rot_mat, x.size()).type(dtype)
-    x = F.grid_sample(x, grid, padding_mode="reflection")
+    grid    = F.affine_grid(rot_mat, x.size()).type(dtype)
+    x       = F.grid_sample(x, grid, padding_mode="border")
     return x
 
 def translation_img(x, a, b):
-    dtype =  torch.FloatTensor
+    dtype   = torch.FloatTensor
     rot_mat = get_translation_mat(a, b)[None, ...].type(dtype).repeat(x.shape[0],1,1)
-    grid = F.affine_grid(rot_mat, x.size()).type(dtype)
-    x = F.grid_sample(x, grid, padding_mode="reflection")
+    grid    = F.affine_grid(rot_mat, x.size()).type(dtype)
+    x       = F.grid_sample(x, grid, padding_mode="border")
     return x
 
 def hflip_img(x):
@@ -56,8 +56,8 @@ def hflip_img(x):
 def rot90_img(x,k):
     # k is 0,1,2,3
     degreesarr = [0., 90., 180., 270., 360]
-    degrees = torch.tensor(degreesarr[k])
-    x = K.geometry.transform.rotate(x, angle = degrees, padding_mode='reflection')
+    degrees    = torch.tensor(degreesarr[k])
+    x          = K.geometry.transform.rotate(x, angle = degrees, padding_mode='border')
     return x
 
 def grey_img(x):
@@ -68,8 +68,8 @@ def grey_img(x):
 
 def denormalization(x):
     mean = np.array([0.5, 0.5, 0.5])
-    std = np.array([0.5, 0.5, 0.5])
-    x = (((x.transpose(1, 2, 0) * std) + mean) * 255.).astype(np.uint8)
+    std  = np.array([0.5, 0.5, 0.5])
+    x    = (((x.transpose(1, 2, 0) * std) + mean) * 255.).astype(np.uint8)
     # x = (x.transpose(1, 2, 0) * 255.).astype(np.uint8)
     return x
 

@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import cv2
+import torch
 
 class AverageMeter(object):
     """Computes and stores the average and current value"""
@@ -244,46 +245,85 @@ def visualize_results(test_img, scores, img_scores, gts, query_features, thresho
         img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         cv2.imencode('.png', img)[1].tofile(os.path.join(save_dir, 'support', class_name + '_fewshot_support_{}.png'.format(i)))
 
-def visualize_augment_image(augment_image, save_dir, class_name):
+def visualize_augment_image_2(augment_image, save_dir, class_name):
     num            = len(augment_image)
     imagew, imageh = np.int(augment_image[0].shape[1]), np.int(augment_image[0].shape[2])
     augment_image1 = []
     augment_image2 = []
 
     for i in range(num):
+        cur_image = augment_image[i]
         if i % 2 == 0:
-            augment_image1.append(augment_image[i])
+            augment_image1.append(cur_image)
         else:
-            augment_image2.append(augment_image[i])
+            augment_image2.append(cur_image)
     
-    show_image1 = np.zeros((imagew * 5, imageh * 5, 3), dtype=np.uint8)
-    show_image2 = np.zeros((imagew * 5, imageh * 5, 3), dtype=np.uint8)
+    show_image1 = np.zeros((imagew * 3, imageh * 8, 3), dtype=np.uint8)
+    show_image2 = np.zeros((imagew * 3, imageh * 8, 3), dtype=np.uint8)
 
-    # 一张图像 扩充到22张图像, 5*5张进行排列
-    for i in range(len(augment_image1)):
+    # 一张图像 扩充到22张图像, 3*8张进行排列
+    #-------------------------------------------------------
+    for i in range(7):
+        img     = augment_image1[i] if i < 6 else torch.mean(torch.stack(augment_image1), 0)
+        img     = img.numpy()
+        img     = denormalization(img)
+        x       = 0
+        y       = i % 8
+        start_x = int(x * imagew)
+        start_y = int(y * imageh)
+        show_image1[start_x:(start_x+imagew), start_y:(start_y+imageh), :] = img
+
+    for i in range(6, len(augment_image1)):
         img     = augment_image1[i]
         img     = img.numpy()
         img     = denormalization(img)
-        x       = i // 5
-        y       = i % 5
+        x       = (i + 2) // 8
+        y       = (i + 2) % 8
         start_x = int(x * imagew)
         start_y = int(y * imageh)
         show_image1[start_x:(start_x+imagew), start_y:(start_y+imageh), :] = img
     
-    for i in range(len(augment_image2)):
-        img     = augment_image[i]
+    #-------------------------------------------------------
+    for i in range(7):
+        img     = augment_image2[i] if i < 6 else torch.mean(torch.stack(augment_image2), 0)
         img     = img.numpy()
         img     = denormalization(img)
-        x       = i // 5
-        y       = i % 5
+        x       = 0
+        y       = i % 8
         start_x = int(x * imagew)
         start_y = int(y * imageh)
         show_image2[start_x:(start_x+imagew), start_y:(start_y+imageh), :] = img
+
+    for i in range(6, len(augment_image2)):
+        img     = augment_image2[i]
+        img     = img.numpy()
+        img     = denormalization(img)
+        x       = (i + 2) // 8
+        y       = (i + 2) % 8
+        start_x = int(x * imagew)
+        start_y = int(y * imageh)
+        show_image2[start_x:(start_x+imagew), start_y:(start_y+imageh), :] = img
+
+    #-------------------------------------------------------
+    mean_image = torch.mean(augment_image, 0)
+    mean_image = mean_image.numpy()
+    mean_image = denormalization(mean_image)
+    mean_image = cv2.cvtColor(mean_image, cv2.COLOR_RGB2BGR)
 
     show_image1 = cv2.cvtColor(show_image1, cv2.COLOR_RGB2BGR)
     show_image2 = cv2.cvtColor(show_image2, cv2.COLOR_RGB2BGR)
     cv2.imencode('.png', show_image1)[1].tofile(os.path.join(save_dir, class_name + '_augment_1.png'))
     cv2.imencode('.png', show_image2)[1].tofile(os.path.join(save_dir, class_name + '_augment_2.png'))
+    cv2.imencode('.png', mean_image)[1].tofile(os.path.join(save_dir, class_name + '_mean.png'))
+
+def visualize_augment_image(augment_image, save_dir, class_name):
+    #-------------------------------------------------------
+    mean_image = torch.mean(augment_image, 0)
+    mean_image = mean_image.numpy()
+    mean_image = denormalization(mean_image)
+    mean_image = cv2.cvtColor(mean_image, cv2.COLOR_RGB2BGR)
+    cv2.imencode('.png', mean_image)[1].tofile(os.path.join(save_dir, class_name + '_mean.png'))
+
 
 def denormalization(x):
     #mean = np.array([0.485, 0.456, 0.406])
